@@ -1,49 +1,49 @@
-import * as fs from 'fs';
-import * as vscode from 'vscode';
+import * as fs from "fs";
+import * as vscode from "vscode";
 
 export class SidebarProvider {
-    private _extensionUri: vscode.Uri;
-    private context: vscode.ExtensionContext;
-    public webview: vscode.Webview | undefined;
-    constructor(_extensionUri: vscode.Uri, context: vscode.ExtensionContext) {
-        this._extensionUri = _extensionUri;
-        this.context = context;
-    }
-    resolveWebviewView(webviewView: vscode.WebviewView) {
-        // let url = vscode.Uri.joinPath(this._extensionUri, "html", "index.html");
-        // let htmlData = fs.readFileSync(url.fsPath, "utf-8");
-        this.webview = webviewView.webview;
-        webviewView.webview.options = {
-            enableScripts: true,
-            localResourceRoots: [this._extensionUri],
-        };
-        webviewView.onDidChangeVisibility((v) => {
-            webviewView.webview.html = getWebviewContent();
-        });
+  private _extensionUri: vscode.Uri;
+  private context: vscode.ExtensionContext;
+  public webview: vscode.Webview | undefined;
+  constructor(_extensionUri: vscode.Uri, context: vscode.ExtensionContext) {
+    this._extensionUri = _extensionUri;
+    this.context = context;
+  }
+  resolveWebviewView(webviewView: vscode.WebviewView) {
+    // let url = vscode.Uri.joinPath(this._extensionUri, "html", "index.html");
+    // let htmlData = fs.readFileSync(url.fsPath, "utf-8");
+    this.webview = webviewView.webview;
+    webviewView.webview.options = {
+      enableScripts: true,
+      localResourceRoots: [this._extensionUri],
+    };
+    webviewView.onDidChangeVisibility((v) => {
+      webviewView.webview.html = getWebviewContent();
+    });
 
-        webviewView.webview.html = getWebviewContent();
+    webviewView.webview.html = getWebviewContent();
 
-        webviewView.webview.onDidReceiveMessage((data) => {
-            this.context.globalState.update('info', data);
-        });
-    }
-    // _getHtmlForWebview(webview, res) {
-    //     const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, "media", "index.js"));
-    //     const elementCssUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, "media", "index.css"));
-    //     const nonce = (0, utils_1.getNonce)();
-    //     let data = res
-    //         .replace("<!-- css -->", `
-    //      <link rel="stylesheet" href="${elementCssUri}" />
-    //   `)
-    //         .replace("<!-- js -->", ` 
-    //   <script type = "module" crossorigin nonce = "${nonce}" src = "${scriptUri}" > </script>
-    // `);
-    //     return data;
-    // }
+    webviewView.webview.onDidReceiveMessage((data) => {
+      this.context.globalState.update("info", data);
+    });
+  }
+  // _getHtmlForWebview(webview, res) {
+  //     const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, "media", "index.js"));
+  //     const elementCssUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, "media", "index.css"));
+  //     const nonce = (0, utils_1.getNonce)();
+  //     let data = res
+  //         .replace("<!-- css -->", `
+  //      <link rel="stylesheet" href="${elementCssUri}" />
+  //   `)
+  //         .replace("<!-- js -->", `
+  //   <script type = "module" crossorigin nonce = "${nonce}" src = "${scriptUri}" > </script>
+  // `);
+  //     return data;
+  // }
 }
 
 function getWebviewContent() {
-    return `<!DOCTYPE html>
+  return `<!DOCTYPE html>
   <html lang="en">
   <head>
       <meta charset="UTF-8">
