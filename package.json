@@ -1,0 +1,77 @@
+{
+  "name": "i18n-convert",
+  "displayName": "i18n-convert",
+  "description": "用于自动转换国际化页面",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.78.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "menus": {
+      "editor/context": [
+        {
+          "command": "i18n-convert.convert",
+          "group": "i18n_c"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "i18n-convert.convert",
+        "title": "国际化转换"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "i18n-convert-container",
+          "title": "国际化转换",
+          "icon": "images/openai-transparent.png"
+        }
+      ]
+    },
+    "views": {
+      "i18n-convert-container": [
+        {
+          "type": "webview",
+          "id": "i18n-convert.view",
+          "name": "交互窗口"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/js-md5": "^0.7.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/request": "^2.48.8",
+    "@types/vscode": "^1.78.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
+    "@vscode/test-electron": "^2.3.0",
+    "eslint": "^8.39.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.0.4"
+  },
+  "author": "dll",
+  "dependencies": {
+    "@vscode/vsce": "^2.19.0",
+    "js-md5": "^0.7.3",
+    "request": "^2.88.2"
+  }
+}

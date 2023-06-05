@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html style="font-size: 14px;">
+<head>
+    <meta charset="UTF-8">
+    <title>i18n</title>
+    <style>
+        iframe {
+            width: 0px;
+            height: 0px;
+        }
+    </style>
+</head>
+<body class="dark:bg-black">
+    <div id="app">
+        <div>输入appid: <input id="appid" type="text"></div>
+        <div>输入密钥: <input id="secretKey" type="text"></div>
+        <div>模块名称: <input id="module" type="text"></div>
+        <button id="button-sure">确定</button>
+        <div>
+            <span>配置对象</span>
+            <div id="config-content">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        (function () {
+            const vscode = acquireVsCodeApi();
+            window.addEventListener('message', event => {
+                const message = event.data; // The JSON data our extension sent
+
+                document.querySelector('#config-content').innerHTML = message
+            });
+            document.getElementById('button-sure').onclick = function () {
+                let info = {
+                    appid: document.querySelector('#appid').value,
+                    secretKey: document.querySelector('#secretKey').value,
+                    module: document.querySelector('#module').value
+                }
+                console.log(info);
+                vscode.postMessage(JSON.stringify(info))
+            }
+        }())
+    </script>
+</body>
+</html>
