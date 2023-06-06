@@ -22,7 +22,7 @@ export function transformText(
   }
   return new Promise((resolve, reject) => {
     let reg =
-      /(?<!(\/\/|\*|\<\!\-\-).*)[a-zA-Z0-9（）]*[\u4e00-\u9fa5]{2,}[a-zA-Z0-9（），：\u4e00-\u9fa5\-]*[\:\：\？\?！]?/g;
+      /(?<!(\/\/|\*|\<\!\-\-).*)[a-zA-Z0-9（）]*[\u4e00-\u9fa5]{2,}[a-zA-Z0-9（），：\u4e00-\u9fa5\-\/]*[\:\：\？\?！]?/g;
     let allzh = input.match(reg) || [];
     if (allzh.length !== 0) {
       getConfig(allzh).then((res) => {
@@ -61,7 +61,7 @@ function getConfig(arrParam: string[]): Promise<{ [key: string]: string }> {
           .join("")
           .replace(":", "Col")
           .replace(/\(.*\)/g, "")
-          .replace(/[,，！\!\-\?]/g, "");
+          .replace(/[,，！\!\-\?\/]/g, "");
         res[resKey] = arrParam[i];
       }
       resolve(res);

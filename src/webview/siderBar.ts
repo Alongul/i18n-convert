@@ -52,14 +52,14 @@ function getWebviewContent() {
   </head>
   <body>
       <div id="app">
-      <div>id: <input id="appid" type="text"></div>
-      <div>密钥: <input id="secretKey" type="text"></div>
-      <div>模块: <input id="module" type="text"></div>
+      <div>id:<br/> <input id="appid" type="text"></div>
+      <div>密钥:<br/> <input id="secretKey" type="text"></div>
+      <div>模块:<br/><input id="module" type="text"></div>
+      <br/>
       <button id="button-sure">确定</button>
       <div>
           <span>配置对象</span>
           <div id="config-content">
-
           </div>
       </div>
   </div>
