@@ -1,4 +1,3 @@
-import * as fs from "fs";
 import * as vscode from "vscode";
 
 export class SidebarProvider {
@@ -27,19 +26,6 @@ export class SidebarProvider {
       this.context.globalState.update("info", data);
     });
   }
-  // _getHtmlForWebview(webview, res) {
-  //     const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, "media", "index.js"));
-  //     const elementCssUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, "media", "index.css"));
-  //     const nonce = (0, utils_1.getNonce)();
-  //     let data = res
-  //         .replace("<!-- css -->", `
-  //      <link rel="stylesheet" href="${elementCssUri}" />
-  //   `)
-  //         .replace("<!-- js -->", `
-  //   <script type = "module" crossorigin nonce = "${nonce}" src = "${scriptUri}" > </script>
-  // `);
-  //     return data;
-  // }
 }
 
 function getWebviewContent() {
