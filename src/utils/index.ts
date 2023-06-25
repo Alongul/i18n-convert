@@ -61,7 +61,7 @@ function getConfig(arrParam: string[]): Promise<{ [key: string]: string }> {
           .join("")
           .replace(":", "Col")
           .replace(/\(.*\)/g, "")
-          .replace(/[,，！\!\-\?\/]/g, "");
+          .replace(/[,，！\!\-\?\/\']/g, "");
         res[resKey] = arrParam[i];
       }
       resolve(res);
